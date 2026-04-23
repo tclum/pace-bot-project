@@ -1,0 +1,77 @@
+# === Secrets — NEVER commit these ===
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+!.env.example
+
+# === Node / TypeScript (pace-bot, pace-bot-front) ===
+node_modules/
+dist/
+build/
+.next/
+.vite/
+coverage/
+*.tsbuildinfo
+.npm/
+.yarn/
+.pnpm-store/
+
+# === Python (pace-agent) ===
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# === Model files (large binaries) ===
+*.onnx
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# === uv ===
+# keep uv.lock committed, ignore cache
+.uv/
+
+# === Logs and runtime ===
+*.log
+logs/
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# === Editor / OS ===
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+._*
+
+# === Misc ===
+*.tmp
+*.temp
+.cache/
+
+# === Coding-assistant skill configs (per-developer, not source) ===
+.claude/
+.agents/
+.augment/
+.bob/
+.codebuddy/
+.commandcode/
+.continue/
+.cortex/

@@ -1,0 +1,130 @@
+[
+  {
+    "slug": "kuleana-driven-venture",
+    "name": "Kuleana-driven venture",
+    "category": "cultural",
+    "short_definition": "Building a company as an act of stewardship — responsibility to place, people, and future generations.",
+    "long_explanation": "Kuleana is a Native Hawaiian concept of reciprocal responsibility and privilege — you hold something, and because you hold it, you owe something back. A kuleana-driven venture treats the founder's role less like ownership and more like stewardship. The question shifts from 'how big can this get' to 'what is this venture responsible to, and is it fulfilling that responsibility?' This framing does not preclude growth or profit, but it makes both instruments of a larger duty rather than ends in themselves. Founders practicing this approach often design governance, hiring, and reinvestment policies that explicitly name what the venture is accountable to — land, community, workers, future generations — and measure success against those obligations alongside financial ones.",
+    "pacific_asian_context": "Kuleana is rooted in Native Hawaiian worldview and has no clean English translation. Translating it as 'responsibility' loses the reciprocal nature: kuleana is both something given to you and something you owe. For Hawaii-based ventures especially, understanding kuleana changes the baseline assumptions about what a company exists to do.",
+    "example_ventures": [
+      {
+        "name": "Watershed-linked agriculture",
+        "note": "A food venture that commits a percentage of revenue to restoring the watershed its crops depend on."
+      },
+      {
+        "name": "Community-owned tourism",
+        "note": "A tour operator that shares governance with the community whose culture and land is being visited."
+      }
+    ],
+    "related_concept_slugs": [
+      "pono-economics",
+      "place-based-design",
+      "long-horizon-thinking"
+    ]
+  },
+  {
+    "slug": "pono-economics",
+    "name": "Pono economics",
+    "category": "cultural",
+    "short_definition": "Business decisions evaluated by whether they are pono — right, balanced, in proper relationship — not only whether they are profitable.",
+    "long_explanation": "Pono is a Hawaiian concept often translated as 'righteousness' but more accurately meaning 'in correct relationship' or 'in balance.' A decision is pono when it harmonizes the interests of the parties involved, including the land and future generations, not only the transacting parties. Applied to business, pono economics asks a question standard financial analysis does not: is this decision in right relationship with everyone and everything it affects? A venture might be legal, profitable, and strategically sound while still being not pono — for example, by extracting value from a community faster than it returns value. The framework does not replace financial analysis but runs alongside it.",
+    "pacific_asian_context": "Pono is often paired with kuleana in Hawaiian teaching: kuleana identifies who you are responsible to, pono asks whether your actions are in right relationship with them. Together they form a complete ethical check.",
+    "example_ventures": [
+      {
+        "name": "Fair-trade sourcing with transparency",
+        "note": "A coffee importer that publishes farmer payment data and shares price increases proportionally rather than absorbing them."
+      }
+    ],
+    "related_concept_slugs": ["kuleana-driven-venture", "long-horizon-thinking"]
+  },
+  {
+    "slug": "place-based-design",
+    "name": "Place-based design",
+    "category": "framework",
+    "short_definition": "Designing a product, service, or company around the specific place where it operates, rather than copying a model from elsewhere.",
+    "long_explanation": "Most entrepreneurship education treats geography as a market variable — which cities to launch in, which countries to expand to. Place-based design treats geography as a design input. The climate, the culture, the regulatory environment, the supply chain quirks, and the specific habits and needs of local customers all shape what the product should be, not just where it should sell. A ride-share designed for Honolulu should not assume the traffic patterns, surge economics, or transit alternatives of San Francisco. A food delivery venture in a small island economy faces fundamentally different logistics than one in a dense continental city. Place-based design asks founders to start with the place and let the model emerge, rather than importing a model and patching it to fit.",
+    "pacific_asian_context": "In island and Pacific-Rim contexts, importing continental models tends to fail more visibly than in homogeneous mainland markets. Hawaii, in particular, is a useful test bed: it has US institutions, Asia-Pacific cultural density, and island-scale economics all at once. A model that works here usually works because it was designed here.",
+    "example_ventures": [
+      {
+        "name": "Hyperlocal logistics",
+        "note": "A last-mile delivery company designed around island geography, inter-island shipping, and the actual traffic patterns of Oahu rather than a mainland blueprint."
+      }
+    ],
+    "related_concept_slugs": ["kuleana-driven-venture", "pacific-rim-bridging"]
+  },
+  {
+    "slug": "pacific-rim-bridging",
+    "name": "Pacific Rim bridging",
+    "category": "framework",
+    "short_definition": "Building ventures that use Hawaii's geographic and cultural position to connect US and Asia-Pacific markets.",
+    "long_explanation": "Hawaii sits on the trade lane between the US mainland and Asia, and its population reflects that. A meaningful share of Hawaii residents have family, language, and business ties that span the Pacific. Pacific Rim bridging treats this as a strategic asset: a Hawaii-based venture can build a product in the US context and localize it for Asia-Pacific markets, or bring an Asian or Pacific product or practice to the US, using the state as both testing ground and translation layer. This is different from simply exporting or importing — the 'bridge' is the people, relationships, and cultural fluency that let a venture operate credibly on both sides.",
+    "pacific_asian_context": "This concept is specifically what gives PACE its name — the Pacific Asian focus is not decorative. Shidler College of Business has been recognized for its international-business strength, and PACE channels that into entrepreneurial practice.",
+    "example_ventures": [
+      {
+        "name": "Japan-to-US product translation",
+        "note": "A venture that licenses a Japanese consumer-product concept and adapts branding, regulatory compliance, and retail fit for the US market, using Hawaii as the first launch market."
+      }
+    ],
+    "related_concept_slugs": ["place-based-design", "diaspora-network-leverage"]
+  },
+  {
+    "slug": "diaspora-network-leverage",
+    "name": "Diaspora network leverage",
+    "category": "practice",
+    "short_definition": "Using family, cultural, and alumni networks that span countries to shortcut market entry, hiring, and distribution.",
+    "long_explanation": "Diaspora networks are one of the most underused assets in early-stage ventures. Founders from communities with strong international family ties often have warm introductions, local fluency, and trust in markets that would take a typical startup years and millions of dollars to build. The practice is to map these networks deliberately — who in your family, your church, your alumni group, your cultural community has operating experience, capital, or customers in a market you want to enter — and to build the venture's early distribution around them. This is not the same as nepotism; it is recognizing that trust-rich relationships are commercially valuable and often already in place.",
+    "pacific_asian_context": "Hawaii has unusually dense diaspora networks across Japanese, Filipino, Chinese, Korean, Native Hawaiian, and other Pacific Island communities. UH and Shidler alumni further extend these into professional networks across Asia. Student founders at PACE often have access to international networks they have not consciously mapped.",
+    "example_ventures": [
+      {
+        "name": "Alumni-routed expansion",
+        "note": "A venture that uses Shidler alumni in Tokyo and Seoul as first-customer introductions before hiring in those markets."
+      }
+    ],
+    "related_concept_slugs": ["pacific-rim-bridging"]
+  },
+  {
+    "slug": "long-horizon-thinking",
+    "name": "Long-horizon thinking",
+    "category": "mindset",
+    "short_definition": "Making present decisions with explicit reference to their effects across decades, not only quarters.",
+    "long_explanation": "Standard venture-capital cadence rewards short horizons — quarterly metrics, annual fundraising, five-year exits. Long-horizon thinking asks founders to hold a parallel time frame: what does this decision mean in twenty or fifty years, for the people and places it affects? In practice, this does not require founders to sacrifice near-term performance. It requires them to name, explicitly, which long-horizon outcomes they are optimizing for and which they are willing to trade. A venture can be fast-growing and long-horizon at the same time, but only if someone is actively watching the long horizon. Without that attention, short-term pressure wins by default.",
+    "pacific_asian_context": "Long-horizon thinking is more culturally native in many Pacific-Asian and Native Hawaiian frameworks than in the dominant Silicon Valley model. Concepts like the seven-generations consideration in indigenous thought and the multi-generational family business common across East Asia both assume a longer planning window than quarterly capitalism.",
+    "example_ventures": [
+      {
+        "name": "Multi-generational succession planning",
+        "note": "A family-owned venture that builds governance explicitly for transfer to the next generation, treating succession as a design problem rather than an afterthought."
+      }
+    ],
+    "related_concept_slugs": ["kuleana-driven-venture", "pono-economics"]
+  },
+  {
+    "slug": "resourceful-founder",
+    "name": "Resourceful founder",
+    "category": "mindset",
+    "short_definition": "Treating constraint as a design input rather than a problem to be solved with more funding.",
+    "long_explanation": "The default startup narrative treats capital as the solution to most early problems — not enough customers, raise money for marketing; not enough engineers, raise money to hire. The resourceful founder mindset treats capital as one tool among many and often not the right one. Constraint, in this framing, is creative pressure. A venture that cannot outspend its competitors has to out-think them, which frequently produces better businesses in the long run. Practically, this looks like shipping with less, selling before building, using existing assets and relationships instead of new hires, and treating every fundraise as a deliberate choice rather than a default stage.",
+    "pacific_asian_context": "Island economies and smaller regional markets do not support the capital-intensive model that works in Silicon Valley. Founders in Hawaii and across the Pacific often build ventures that have to be resourceful because the capital environment simply does not support the alternative. What starts as a constraint often becomes a durable competitive advantage.",
+    "example_ventures": [
+      {
+        "name": "Pre-sold product launch",
+        "note": "A hardware venture that collected deposits covering its first production run before building inventory, using customer capital rather than investor capital."
+      }
+    ],
+    "related_concept_slugs": ["experiential-learning", "long-horizon-thinking"]
+  },
+  {
+    "slug": "experiential-learning",
+    "name": "Experiential learning",
+    "category": "practice",
+    "short_definition": "Learning entrepreneurship by running real ventures, not only studying them.",
+    "long_explanation": "Entrepreneurship cannot be fully learned from lectures and case studies because the real work is judgment under uncertainty, and judgment does not develop without reps. Experiential learning structures the reps — pitch competitions, accelerators, mentorship with practicing founders, grants for prototypes — so students build the muscles of entrepreneurship while the stakes are still low. The point is not that every experiential project should succeed; the point is that every project should teach something that carries forward. Failure metabolized into learning is part of the design, not a bug.",
+    "pacific_asian_context": "PACE's entire program architecture is built on this principle: over fifteen programs offering mentorship, grants, pitch competitions, and hands-on experience, all free to UH students. The Walter Dods Jr. RISE Center, the UH Venture Competition, the Kalo Grant, and the PACE Leaders program are all expressions of this approach.",
+    "example_ventures": [
+      {
+        "name": "Student-led maker workshops",
+        "note": "Students learn entrepreneurship by running workshops for other students, practicing program management, marketing, and iteration on a real audience."
+      }
+    ],
+    "related_concept_slugs": ["resourceful-founder"]
+  }
+]

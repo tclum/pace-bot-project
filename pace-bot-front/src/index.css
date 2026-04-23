@@ -1,0 +1,149 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* PACE Design System — all colors HSL */
+
+@layer base {
+  :root {
+    /* Brand */
+    --pace-navy: 210 100% 20%;        /* #003366 */
+    --pace-navy-deep: 210 100% 12%;   /* deeper navy for gradient */
+    --pace-teal: 190 80% 18%;         /* dark teal for gradient end */
+    --pace-green: 147 100% 32%;       /* #00A550 */
+    --pace-green-glow: 147 100% 42%;
+    --pace-gold: 40 100% 50%;         /* #FFB300 */
+    --pace-gold-soft: 40 100% 60%;
+
+    /* Neutrals */
+    --background: 0 0% 100%;
+    --foreground: 210 30% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 210 30% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 210 30% 12%;
+
+    --primary: 210 100% 20%;          /* navy */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 147 100% 32%;        /* green */
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 20% 96%;
+    --muted-foreground: 210 15% 40%;
+
+    --accent: 40 100% 50%;            /* gold */
+    --accent-foreground: 210 100% 12%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 20% 90%;
+    --input: 210 20% 90%;
+    --ring: 210 100% 20%;
+
+    --radius: 0.75rem;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(var(--pace-navy-deep)) 0%, hsl(var(--pace-navy)) 45%, hsl(var(--pace-teal)) 100%);
+    --gradient-green: linear-gradient(135deg, hsl(var(--pace-green)) 0%, hsl(var(--pace-green-glow)) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(var(--pace-gold)) 0%, hsl(var(--pace-gold-soft)) 100%);
+
+    /* Shadows */
+    --shadow-card: 0 10px 30px -12px hsl(210 100% 12% / 0.18);
+    --shadow-card-hover: 0 24px 60px -18px hsl(210 100% 12% / 0.28);
+    --shadow-green-glow: 0 0 0 0 hsl(var(--pace-green) / 0.6), 0 16px 40px -12px hsl(var(--pace-green) / 0.55);
+    --shadow-gold-glow: 0 0 0 0 hsl(var(--pace-gold) / 0.6), 0 16px 40px -12px hsl(var(--pace-gold) / 0.55);
+
+    /* Transitions */
+    --transition-smooth: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 210 100% 8%;
+    --foreground: 0 0% 98%;
+    --card: 210 100% 10%;
+    --card-foreground: 0 0% 98%;
+    --popover: 210 100% 10%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 210 100% 12%;
+    --secondary: 147 100% 32%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 210 30% 18%;
+    --muted-foreground: 210 15% 70%;
+    --accent: 40 100% 50%;
+    --accent-foreground: 210 100% 12%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 210 30% 20%;
+    --input: 210 30% 20%;
+    --ring: 0 0% 98%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4 {
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .bg-hero-gradient {
+    background-image: var(--gradient-hero);
+  }
+  .bg-green-gradient {
+    background-image: var(--gradient-green);
+  }
+  .bg-gold-gradient {
+    background-image: var(--gradient-gold);
+  }
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+  .shadow-card-hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  /* Faint geometric island-inspired overlay for hero */
+  .hero-pattern {
+    background-image:
+      radial-gradient(circle at 20% 20%, hsl(var(--pace-green) / 0.08) 0, transparent 40%),
+      radial-gradient(circle at 80% 30%, hsl(var(--pace-gold) / 0.07) 0, transparent 45%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'><g fill='none' stroke='white' stroke-opacity='0.05' stroke-width='1'><path d='M0 40 Q20 20 40 40 T80 40'/><path d='M0 60 Q20 40 40 60 T80 60'/><path d='M0 20 Q20 0 40 20 T80 20'/></g></svg>");
+  }
+
+  .text-glow {
+    text-shadow: 0 0 24px hsl(0 0% 100% / 0.25), 0 0 60px hsl(var(--pace-green) / 0.25);
+  }
+}
