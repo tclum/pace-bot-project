@@ -20,14 +20,6 @@ const schema = z.object({
       { message: "must be a URL or comma-separated list of URLs" },
     ),
 
-  HEYGEN_API_KEY: z.string().min(1),
-  HEYGEN_AVATAR_ID: z.string().min(1),
-  HEYGEN_VOICE_ID: z.string().optional(),
-  HEYGEN_AVATAR_ID_PACE_GUIDE: z.string().optional(),
-  HEYGEN_VOICE_ID_PACE_GUIDE: z.string().optional(),
-  HEYGEN_AVATAR_ID_MENTOR: z.string().optional(),
-  HEYGEN_VOICE_ID_MENTOR: z.string().optional(),
-
   ANTHROPIC_API_KEY: z.string().min(1),
   ANTHROPIC_MODEL: z.string().min(1).default("claude-opus-4-7"),
 

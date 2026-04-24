@@ -4,7 +4,6 @@ import Fastify from "fastify";
 import { env } from "./env.js";
 import { chatRoutes } from "./routes/chat.js";
 import { livekitRoutes } from "./routes/livekit.js";
-import { tokenRoutes } from "./routes/token.js";
 
 async function build() {
   const app = Fastify({
@@ -32,7 +31,6 @@ async function build() {
 
   app.get("/healthz", async () => ({ status: "ok" }));
 
-  await app.register(tokenRoutes);
   await app.register(chatRoutes);
   await app.register(livekitRoutes);
 

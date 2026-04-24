@@ -1,4 +1,3 @@
-import { env } from "../env.js";
 import type { Corpus } from "../db/schema.js";
 import { MENTOR_PROMPT, PACE_GUIDE_PROMPT } from "./prompts.js";
 
@@ -9,8 +8,6 @@ export interface AvatarConfig {
   systemPrompt: string;
   allowedTools: string[];
   corpus: Corpus;
-  heygenAvatarId: string;
-  heygenVoiceId?: string;
 }
 
 export const avatarRegistry: Record<AvatarType, AvatarConfig> = {
@@ -24,8 +21,6 @@ export const avatarRegistry: Record<AvatarType, AvatarConfig> = {
       "find_person",
     ],
     corpus: "org",
-    heygenAvatarId: env.HEYGEN_AVATAR_ID_PACE_GUIDE ?? env.HEYGEN_AVATAR_ID,
-    heygenVoiceId: env.HEYGEN_VOICE_ID_PACE_GUIDE ?? env.HEYGEN_VOICE_ID,
   },
   entrepreneurship_mentor: {
     systemPrompt: MENTOR_PROMPT,
@@ -36,8 +31,6 @@ export const avatarRegistry: Record<AvatarType, AvatarConfig> = {
       "get_related_concepts",
     ],
     corpus: "curriculum",
-    heygenAvatarId: env.HEYGEN_AVATAR_ID_MENTOR ?? env.HEYGEN_AVATAR_ID,
-    heygenVoiceId: env.HEYGEN_VOICE_ID_MENTOR ?? env.HEYGEN_VOICE_ID,
   },
 };
 
