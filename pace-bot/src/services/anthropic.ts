@@ -4,6 +4,10 @@ import type {
   ToolResultBlockParam,
   ToolUseBlock,
 } from "@anthropic-ai/sdk/resources/messages.mjs";
+import {
+  MENTOR_PROMPT_UNGUARDED,
+  PACE_GUIDE_PROMPT_UNGUARDED,
+} from "../avatars/prompts-unguarded.js";
 import { avatarRegistry, type AvatarType } from "../avatars/registry.js";
 import { env } from "../env.js";
 import { getToolDefinitions, runTool } from "../tools/index.js";
@@ -33,16 +37,34 @@ export interface ChatResult {
   toolsUsed: string[];
 }
 
+export interface RunChatOptions {
+  unguarded?: boolean;
+}
+
+function pickSystemPrompt(
+  avatarType: AvatarType,
+  unguarded: boolean,
+): string {
+  if (!unguarded) return avatarRegistry[avatarType].systemPrompt;
+  return avatarType === "pace_guide"
+    ? PACE_GUIDE_PROMPT_UNGUARDED
+    : MENTOR_PROMPT_UNGUARDED;
+}
+
 export async function runChat(
   sessionId: string,
   avatarType: AvatarType,
   userMessage: string,
+  options?: RunChatOptions,
 ): Promise<ChatResult> {
   const config = avatarRegistry[avatarType];
-  const historyKey = `${avatarType}:${sessionId}`;
+  const unguarded = options?.unguarded ?? false;
+  const modeSuffix = unguarded ? "unguarded" : "guarded";
+  const historyKey = `${avatarType}:${sessionId}:${modeSuffix}`;
   const history = getHistory(historyKey);
   history.push({ role: "user", content: userMessage });
 
+  const systemPrompt = pickSystemPrompt(avatarType, unguarded);
   const tools = getToolDefinitions(config.allowedTools);
   const toolCtx = { corpus: config.corpus };
   const toolsUsed: string[] = [];
@@ -51,7 +73,7 @@ export async function runChat(
     const resp = await client.messages.create({
       model: env.ANTHROPIC_MODEL,
       max_tokens: MAX_TOKENS,
-      system: config.systemPrompt,
+      system: systemPrompt,
       tools,
       messages: history,
     });
@@ -90,4 +112,22 @@ export async function runChat(
   }
 
   throw new Error(`Chat loop exceeded ${MAX_ITERATIONS} iterations`);
+}
+
+export async function runRawClaude(
+  userMessage: string,
+): Promise<{ reply: string }> {
+  const resp = await client.messages.create({
+    model: env.ANTHROPIC_MODEL,
+    max_tokens: MAX_TOKENS,
+    messages: [{ role: "user", content: userMessage }],
+  });
+
+  const text = resp.content
+    .filter((b): b is Extract<typeof b, { type: "text" }> => b.type === "text")
+    .map((b) => b.text)
+    .join("\n")
+    .trim();
+
+  return { reply: text };
 }
