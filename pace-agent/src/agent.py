@@ -1,12 +1,16 @@
-import asyncio
-import json
-import logging
-import os
-import uuid
-
-import httpx
 from dotenv import load_dotenv
-from livekit.agents import (
+
+# Must run before personas import so env-backed persona config reads .env values.
+load_dotenv(".env")
+
+import asyncio  # noqa: E402
+import json  # noqa: E402
+import logging  # noqa: E402
+import os  # noqa: E402
+import uuid  # noqa: E402
+
+import httpx  # noqa: E402
+from livekit.agents import (  # noqa: E402
     Agent,
     AgentServer,
     AgentSession,
@@ -17,20 +21,24 @@ from livekit.agents import (
     llm,
     room_io,
 )
-from livekit.plugins import deepgram, noise_cancellation, silero
-from livekit.plugins.turn_detector.multilingual import MultilingualModel
+from livekit.plugins import (  # noqa: E402
+    deepgram,
+    liveavatar,
+    noise_cancellation,
+    silero,
+)
+from livekit.plugins.turn_detector.multilingual import MultilingualModel  # noqa: E402
 
-from backend import BackendClient
-from personas import (
+from backend import BackendClient  # noqa: E402
+from personas import (  # noqa: E402
     AVATAR_TYPES,
     DEFAULT_AVATAR_TYPE,
     DEGRADED_GREETING,
     DEGRADED_TURN_REPLY,
     PERSONA_GREETINGS,
+    PERSONA_LIVEAVATAR_IDS,
     AvatarType,
 )
-
-load_dotenv(".env")
 
 logging.basicConfig(
     level=logging.INFO,
@@ -213,6 +221,29 @@ async def pace_agent_session(ctx: JobContext) -> None:
         vad=ctx.proc.userdata["vad"],
         turn_detection=MultilingualModel(),
     )
+
+    avatar_id = PERSONA_LIVEAVATAR_IDS.get(avatar_type, "")
+    avatar: liveavatar.AvatarSession | None = None
+    if avatar_id:
+        avatar = liveavatar.AvatarSession(avatar_id=avatar_id)
+        try:
+            await avatar.start(session, ctx.room)
+            logger.info("liveavatar started: avatar_id=%s", avatar_id)
+        except Exception as e:
+            logger.error(
+                "liveavatar start failed: %s; continuing voice-only", e
+            )
+            avatar = None
+    else:
+        logger.warning(
+            "no liveavatar id configured for %s; voice-only mode", avatar_type
+        )
+
+    async def _shutdown_avatar() -> None:
+        if avatar is not None:
+            logger.info("shutdown: closing liveavatar session")
+
+    ctx.add_shutdown_callback(_shutdown_avatar)
 
     @session.on("user_input_transcribed")
     def _on_transcript(event) -> None:

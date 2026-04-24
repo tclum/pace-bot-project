@@ -21,6 +21,10 @@ const schema = z.object({
   VOYAGE_MODEL: z.string().min(1).default("voyage-3"),
 
   DATABASE_URL: z.string().url(),
+
+  LIVEKIT_URL: z.string().url(),
+  LIVEKIT_API_KEY: z.string().min(1),
+  LIVEKIT_API_SECRET: z.string().min(1),
 });
 
 const parsed = schema.safeParse(process.env);

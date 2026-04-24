@@ -10,7 +10,7 @@ requires-python = ">=3.10, <3.15"
 
 dependencies = [
     "httpx>=0.28.1",
-    "livekit-agents[deepgram,silero,turn-detector]~=1.5",
+    "livekit-agents[deepgram,liveavatar,silero,turn-detector]~=1.5",
     "livekit-plugins-noise-cancellation~=0.2",
     "python-dotenv",
 ]

@@ -1,20 +1,13 @@
-import { useState } from "react";
-import AvatarModal from "@/components/AvatarModal";
+import { useNavigate } from "react-router-dom";
 
 /* ------------------------------------------------------------------
  *  SWAP POINTS
  *  (1) PACE_LOGO_URL          → replace with the official PACE logo
- *  (2) HEYGEN_EMBED_LINK_1    → Kai (PACE Guide) HeyGen iframe URL
- *  (3) HEYGEN_EMBED_LINK_2    → Business Coach HeyGen iframe URL
  * ------------------------------------------------------------------ */
 const PACE_LOGO_URL =
   "https://media.licdn.com/dms/image/v2/C560BAQG15sCUCxF5Bw/company-logo_200_200/company-logo_200_200/0/1636086130261/pacehawaii_logo?e=2147483647&v=beta&t=3E7FB3DEh9VmVFYEMM5-Gqb-7tz3goQ5_zewVCtG07Y"; // (1) Footer PACE logo
 const PACE_HERO_LOGO_URL =
   "https://media.bizj.us/view/img/12592390/2021pacelogocoloralternate.png"; // (1b) Hero PACE color logo
-// (2) Kai — PACE Guide (LiveAvatar embed)
-const KAI_EMBED_LINK = "https://embed.liveavatar.com/v1/c9b435e2-1bc6-46de-9dcb-104a6fc84248?orientation=horizontal";
-// (3) Business Coach — replace with LiveAvatar embed URL when ready
-const COACH_EMBED_LINK = "YOUR_LIVEAVATAR_EMBED_LINK_2";
 
 const WaveDivider = ({ flip = false, fill = "hsl(var(--background))" }: { flip?: boolean; fill?: string }) => (
   <div className={`w-full leading-[0] ${flip ? "rotate-180" : ""}`} aria-hidden="true">
@@ -83,7 +76,7 @@ const YouTubeIcon = () => (
 );
 
 const Index = () => {
-  const [openModal, setOpenModal] = useState<null | "kai" | "coach">(null);
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
@@ -161,7 +154,7 @@ const Index = () => {
                 available anytime, day or night.
               </p>
               <button
-                onClick={() => setOpenModal("kai")}
+                onClick={() => navigate("/live/pace_guide")}
                 className="inline-flex items-center gap-2 rounded-full bg-green-gradient text-primary-foreground font-semibold px-7 py-3.5 shadow-card transition-smooth group-hover:shadow-[0_18px_40px_-12px_hsl(var(--pace-green)/0.65)] group-hover:-translate-y-0.5"
               >
                 Talk to Kai
@@ -177,19 +170,22 @@ const Index = () => {
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-pace-navy/10 text-pace-navy mb-6 group-hover:scale-110 transition-smooth">
                 <BriefcaseIcon />
               </div>
-              <h3 className="text-2xl md:text-3xl font-bold text-pace-navy mb-3">
-                Meet Your Business Coach
+              <h3 className="text-2xl md:text-3xl font-bold text-pace-navy mb-2">
+                Entrepreneurship Mentor
               </h3>
+              <p className="text-sm font-semibold uppercase tracking-[0.12em] text-pace-gold mb-3">
+                Explore concepts and philosophies from PACE&apos;s curriculum
+              </p>
               <p className="text-muted-foreground leading-relaxed mb-8">
-                Connect with a live AI business coach for personalized
-                entrepreneurship advice. Get guidance on your business idea,
-                strategy, pitching, and more — in real time.
+                Learn frameworks rooted in Pacific-Asian and Native Hawaiian
+                business thinking. Ask about specific concepts or browse the
+                curriculum.
               </p>
               <button
-                onClick={() => setOpenModal("coach")}
+                onClick={() => navigate("/live/entrepreneurship_mentor")}
                 className="inline-flex items-center gap-2 rounded-full bg-pace-navy text-primary-foreground font-semibold px-7 py-3.5 border-2 border-pace-gold shadow-card transition-smooth group-hover:shadow-[0_18px_40px_-12px_hsl(var(--pace-gold)/0.65)] group-hover:-translate-y-0.5"
               >
-                Start Coaching Session
+                Start conversation
                 <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
               </button>
             </article>
@@ -316,23 +312,6 @@ const Index = () => {
         </div>
       </footer>
 
-      {/* =========================================================
-           MODALS
-         ========================================================= */}
-      {/* (2) Kai LiveAvatar embed */}
-      <AvatarModal
-        open={openModal === "kai"}
-        onClose={() => setOpenModal(null)}
-        title="Meet Kai — Your PACE Guide"
-        src={KAI_EMBED_LINK}
-      />
-      {/* (3) Business Coach LiveAvatar embed */}
-      <AvatarModal
-        open={openModal === "coach"}
-        onClose={() => setOpenModal(null)}
-        title="AI Business Coach"
-        src={COACH_EMBED_LINK}
-      />
     </div>
   );
 };

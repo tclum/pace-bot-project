@@ -13,7 +13,7 @@ version = "1.0.0"
 source = { editable = "." }
 dependencies = [
     { name = "httpx" },
-    { name = "livekit-agents", extra = ["deepgram", "silero", "turn-detector"] },
+    { name = "livekit-agents", extra = ["deepgram", "liveavatar", "silero", "turn-detector"] },
     { name = "livekit-plugins-noise-cancellation" },
     { name = "python-dotenv" },
 ]
@@ -28,7 +28,7 @@ dev = [
 [package.metadata]
 requires-dist = [
     { name = "httpx", specifier = ">=0.28.1" },
-    { name = "livekit-agents", extras = ["deepgram", "silero", "turn-detector"], specifier = "~=1.5" },
+    { name = "livekit-agents", extras = ["deepgram", "liveavatar", "silero", "turn-detector"], specifier = "~=1.5" },
     { name = "livekit-plugins-noise-cancellation", specifier = "~=0.2" },
     { name = "python-dotenv" },
 ]
@@ -1059,6 +1059,9 @@ codecs = [
 deepgram = [
     { name = "livekit-plugins-deepgram" },
 ]
+liveavatar = [
+    { name = "livekit-plugins-liveavatar" },
+]
 silero = [
     { name = "livekit-plugins-silero" },
 ]
@@ -1131,6 +1134,18 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/08/a0/b6927223dc5aee135c413e53c0dd723c26cd905d4167f9313fd593951957/livekit_plugins_deepgram-1.5.6.tar.gz", hash = "sha256:3d8e7a994aad7f32fe74f51408d7b1c792941ada76658f28a3fc9d52ba9a424b", size = 17642, upload-time = "2026-04-22T20:21:54.195Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/e9/bc/6a48e32d051e5c34cdbf6ec524d0cb704a908344c690cb371e8aec9f7d4f/livekit_plugins_deepgram-1.5.6-py3-none-any.whl", hash = "sha256:a10cc85b191f1d83480876ddac4af01860bf4c83214edab2419abaafd8d528c2", size = 22487, upload-time = "2026-04-22T20:21:53.071Z" },
+]
+
+[[package]]
+name = "livekit-plugins-liveavatar"
+version = "1.5.6"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "livekit-agents" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/5d/fd/18d2d33927182fd9e64a6e0df6bb37af340b0c90cd626657cb093f03ac32/livekit_plugins_liveavatar-1.5.6.tar.gz", hash = "sha256:7fbd3c77910441c4c4fbdc29fe153e8acfb6a55a90c71d0fe23a75f095638b90", size = 7758, upload-time = "2026-04-22T20:22:42.363Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/5b/bf/5ecbd163ea3387a3ef034b74a82a7ab3c29b086a7a658b93bc430926e8fd/livekit_plugins_liveavatar-1.5.6-py3-none-any.whl", hash = "sha256:b35064ac467a8046fd00c24aa8ab259c1443133ed363ed51ef1a48c14841ff65", size = 8043, upload-time = "2026-04-22T20:22:40.956Z" },
 ]
 
 [[package]]

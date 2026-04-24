@@ -1,3 +1,6 @@
+from dotenv import load_dotenv
+load_dotenv(".env")
+import os
 from typing import Literal, get_args
 
 AvatarType = Literal["pace_guide", "entrepreneurship_mentor"]
@@ -5,6 +8,11 @@ AvatarType = Literal["pace_guide", "entrepreneurship_mentor"]
 AVATAR_TYPES: tuple[AvatarType, ...] = get_args(AvatarType)
 
 DEFAULT_AVATAR_TYPE: AvatarType = "pace_guide"
+
+PERSONA_LIVEAVATAR_IDS: dict[AvatarType, str] = {
+    "pace_guide": os.environ.get("PACE_GUIDE_LIVEAVATAR_ID", ""),
+    "entrepreneurship_mentor": os.environ.get("MENTOR_LIVEAVATAR_ID", ""),
+}
 
 PERSONA_GREETINGS: dict[AvatarType, str] = {
     "pace_guide": (
