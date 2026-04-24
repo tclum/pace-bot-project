@@ -10,6 +10,11 @@ import { ConnectionState, Track } from "livekit-client";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import {
+  PasswordGate,
+  clearStoredPassword,
+  usePassword,
+} from "@/components/PasswordGate";
 
 type AvatarType = "pace_guide" | "entrepreneurship_mentor";
 
@@ -30,19 +35,20 @@ function isAvatarType(value: string | undefined): value is AvatarType {
   );
 }
 
-const LiveAvatar = () => {
-  const { avatarType } = useParams<{ avatarType: string }>();
+interface LiveAvatarContentProps {
+  avatarType: AvatarType;
+}
+
+const LiveAvatarContent = ({ avatarType }: LiveAvatarContentProps) => {
   const navigate = useNavigate();
+  const password = usePassword();
 
   const [token, setToken] = useState<string | null>(null);
   const [serverUrl, setServerUrl] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
-
-  const isValid = isAvatarType(avatarType);
+  const [unauthorized, setUnauthorized] = useState(false);
 
   useEffect(() => {
-    if (!isValid) return;
-
     const sessionId = crypto.randomUUID();
     const apiBase = import.meta.env.VITE_API_BASE_URL;
     if (!apiBase) throw new Error("VITE_API_BASE_URL not set at build time");
@@ -50,17 +56,26 @@ const LiveAvatar = () => {
 
     fetch(`${apiBase}/api/livekit-token`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        "X-App-Password": password,
+      },
       body: JSON.stringify({ avatarType, sessionId }),
       signal: controller.signal,
     })
       .then(async (r) => {
+        if (r.status === 401) {
+          clearStoredPassword();
+          setUnauthorized(true);
+          return null;
+        }
         if (!r.ok) {
           throw new Error(`Token request failed: HTTP ${r.status}`);
         }
         return r.json() as Promise<{ token: string; serverUrl: string }>;
       })
       .then((data) => {
+        if (!data) return;
         setToken(data.token);
         setServerUrl(data.serverUrl);
       })
@@ -70,19 +85,20 @@ const LiveAvatar = () => {
       });
 
     return () => controller.abort();
-  }, [avatarType, isValid]);
+  }, [avatarType, password]);
 
-  if (!isValid) {
+  if (unauthorized) {
     return (
       <div className="fixed inset-0 flex items-center justify-center bg-pace-navy-deep text-primary-foreground">
         <div className="text-center">
-          <p className="text-lg">Unknown avatar type.</p>
+          <p className="text-lg">Password was rejected.</p>
+          <p className="mt-2 text-sm text-white/60">Refresh to re-enter.</p>
           <Button
             variant="outline"
-            onClick={() => navigate("/")}
-            className="mt-4"
+            onClick={() => window.location.reload()}
+            className="mt-6"
           >
-            Back to home
+            Refresh
           </Button>
         </div>
       </div>
@@ -128,7 +144,7 @@ const LiveAvatar = () => {
       className="fixed inset-0 bg-pace-navy-deep"
     >
       <AvatarStage
-        personaName={PERSONA_NAME[avatarType as AvatarType]}
+        personaName={PERSONA_NAME[avatarType]}
         onEndCall={() => navigate("/")}
       />
       <RoomAudioRenderer />
@@ -189,6 +205,34 @@ const AvatarStage = ({ personaName, onEndCall }: AvatarStageProps) => {
         </Button>
       </div>
     </div>
+  );
+};
+
+const LiveAvatar = () => {
+  const { avatarType } = useParams<{ avatarType: string }>();
+  const navigate = useNavigate();
+
+  if (!isAvatarType(avatarType)) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-pace-navy-deep text-primary-foreground">
+        <div className="text-center">
+          <p className="text-lg">Unknown avatar type.</p>
+          <Button
+            variant="outline"
+            onClick={() => navigate("/")}
+            className="mt-4"
+          >
+            Back to home
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <PasswordGate>
+      <LiveAvatarContent avatarType={avatarType} />
+    </PasswordGate>
   );
 };
 

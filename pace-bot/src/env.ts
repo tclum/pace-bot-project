@@ -31,6 +31,8 @@ const schema = z.object({
   LIVEKIT_URL: z.string().url(),
   LIVEKIT_API_KEY: z.string().min(1),
   LIVEKIT_API_SECRET: z.string().min(1),
+
+  APP_PASSWORD: z.string().min(1),
 });
 
 const parsed = schema.safeParse(process.env);

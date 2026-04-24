@@ -3,6 +3,7 @@ import { AccessToken } from "livekit-server-sdk";
 import { z } from "zod";
 import { avatarTypes } from "../avatars/registry.js";
 import { env } from "../env.js";
+import { requirePassword } from "../middleware/password.js";
 
 const bodySchema = z.object({
   avatarType: z.enum(avatarTypes),
@@ -15,7 +16,7 @@ const AVATAR_ROOM_PREFIX: Record<(typeof avatarTypes)[number], string> = {
 };
 
 export async function livekitRoutes(app: FastifyInstance): Promise<void> {
-  app.post("/api/livekit-token", async (req, reply) => {
+  app.post("/api/livekit-token", { preHandler: requirePassword }, async (req, reply) => {
     const parsed = bodySchema.safeParse(req.body);
     if (!parsed.success) {
       return reply.code(400).send({

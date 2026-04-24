@@ -1,6 +1,7 @@
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { avatarTypes } from "../avatars/registry.js";
+import { requirePassword } from "../middleware/password.js";
 import { runChat } from "../services/anthropic.js";
 
 const bodySchema = z.object({
@@ -10,7 +11,7 @@ const bodySchema = z.object({
 });
 
 export async function chatRoutes(app: FastifyInstance): Promise<void> {
-  app.post("/api/chat", async (req, reply) => {
+  app.post("/api/chat", { preHandler: requirePassword }, async (req, reply) => {
     const parsed = bodySchema.safeParse(req.body);
     if (!parsed.success) {
       return reply.code(400).send({
