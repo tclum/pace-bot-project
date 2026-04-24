@@ -68,6 +68,14 @@ RUN adduser \
 # This avoids expensive recursive chown and excludes build tools from the final image
 COPY --from=build --chown=appuser:appuser /app /app
 
+# Carry over the HuggingFace cache populated by `src/agent.py download-files` in the
+# build stage. The build stage runs as root (HOME=/root), so the cache lives at
+# /root/.cache/huggingface; in the runtime stage appuser's HOME is /app, so we move it
+# there and point HF_HOME at it so the turn-detector + VAD plugins find model_q8.onnx
+# locally instead of trying to re-download at startup.
+COPY --from=build --chown=appuser:appuser /root/.cache/huggingface /app/.cache/huggingface
+ENV HF_HOME=/app/.cache/huggingface
+
 WORKDIR /app
 
 # Switch to the non-privileged user for all subsequent operations
