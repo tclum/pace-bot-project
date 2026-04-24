@@ -5,15 +5,18 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/server.ts",
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
+    "start:prod": "node dist/src/server.js",
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "migrate": "tsx scripts/migrate.ts",
+    "migrate:prod": "node dist/scripts/migrate.js",
     "ingest": "tsx scripts/ingest.ts",
     "ingest-programs": "tsx scripts/ingest-programs.ts",
     "ingest-events": "tsx scripts/ingest-events.ts",
     "ingest-people": "tsx scripts/ingest-people.ts",
-    "ingest-concepts": "tsx scripts/ingest-concepts.ts"
+    "ingest-concepts": "tsx scripts/ingest-concepts.ts",
+    "ingest:concepts:prod": "node dist/scripts/ingest-concepts.js"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.30.0",

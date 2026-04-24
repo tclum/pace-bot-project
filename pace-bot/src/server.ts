@@ -14,8 +14,13 @@ async function build() {
     bodyLimit: 64 * 1024,
   });
 
+  const allowedOrigins = env.ALLOWED_ORIGIN.split(",").map((o) => o.trim());
+
   await app.register(cors, {
-    origin: env.ALLOWED_ORIGIN,
+    origin: (origin, cb) => {
+      if (!origin || allowedOrigins.includes(origin)) return cb(null, true);
+      cb(new Error("Not allowed by CORS"), false);
+    },
     methods: ["GET", "POST", "OPTIONS"],
   });
 

@@ -4,7 +4,21 @@ import { z } from "zod";
 const schema = z.object({
   PORT: z.coerce.number().int().positive().default(3000),
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
-  ALLOWED_ORIGIN: z.string().url(),
+  ALLOWED_ORIGIN: z
+    .string()
+    .min(1)
+    .refine(
+      (v) =>
+        v.split(",").every((o) => {
+          try {
+            new URL(o.trim());
+            return true;
+          } catch {
+            return false;
+          }
+        }),
+      { message: "must be a URL or comma-separated list of URLs" },
+    ),
 
   HEYGEN_API_KEY: z.string().min(1),
   HEYGEN_AVATAR_ID: z.string().min(1),

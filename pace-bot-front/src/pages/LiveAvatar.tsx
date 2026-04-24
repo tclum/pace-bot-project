@@ -45,6 +45,7 @@ const LiveAvatar = () => {
 
     const sessionId = crypto.randomUUID();
     const apiBase = import.meta.env.VITE_API_BASE_URL;
+    if (!apiBase) throw new Error("VITE_API_BASE_URL not set at build time");
     const controller = new AbortController();
 
     fetch(`${apiBase}/api/livekit-token`, {
