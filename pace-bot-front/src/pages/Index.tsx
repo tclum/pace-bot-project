@@ -160,6 +160,15 @@ const Index = () => {
                 Talk to Kai
                 <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
               </button>
+              <div className="mt-3">
+                <button
+                  onClick={() => navigate("/test/pace_guide")}
+                  className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-pace-navy transition-smooth"
+                >
+                  Or test via text
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
             </article>
 
             {/* CARD 2 — Business Coach */}
@@ -188,6 +197,15 @@ const Index = () => {
                 Start conversation
                 <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
               </button>
+              <div className="mt-3">
+                <button
+                  onClick={() => navigate("/test/entrepreneurship_mentor")}
+                  className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-pace-navy transition-smooth"
+                >
+                  Or test via text
+                  <span aria-hidden="true">→</span>
+                </button>
+              </div>
             </article>
           </div>
         </div>
