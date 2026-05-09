@@ -8,7 +8,7 @@ const bodySchema = z.object({
   sessionId: z.string().uuid(),
   avatarType: z.enum(avatarTypes),
   message: z.string().min(1).max(4000),
-  mode: z.enum(["guarded", "unguarded", "raw"]).default("guarded"),
+  mode: z.enum(["guarded", "unguarded", "raw"]).default("unguarded"),
 });
 
 export async function chatRoutes(app: FastifyInstance): Promise<void> {

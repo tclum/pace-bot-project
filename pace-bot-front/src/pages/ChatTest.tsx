@@ -64,6 +64,11 @@ type ChatApiResponse = {
 
 const MODES: readonly Mode[] = ["guarded", "unguarded", "raw"];
 
+// Flip to true to re-enable the side-by-side comparison columns
+// (guarded / unguarded / raw). When false, only the production-default
+// (unguarded) response is shown, full-width.
+const SHOW_COMPARISON_COLUMNS = false;
+
 const AUTH_ERROR = "AUTH";
 
 function ChatContent({ avatarType }: { avatarType: AvatarType }) {
@@ -175,7 +180,7 @@ function ChatContent({ avatarType }: { avatarType: AvatarType }) {
                 {PERSONA_NAME[avatarType]}
               </h1>
               <p className="text-xs text-muted-foreground">
-                Text-only test mode · three-column comparison
+                Text-only test mode
               </p>
             </div>
           </div>
@@ -296,6 +301,20 @@ function TripleRow({
   responses: TripleResponses;
   personaName: string;
 }) {
+  if (!SHOW_COMPARISON_COLUMNS) {
+    return (
+      <div className="my-2">
+        <div className="grid grid-cols-1 gap-4">
+          <ResponseColumn
+            title="Response"
+            subtitle="(unguarded mode)"
+            response={responses.unguarded}
+            accent="green"
+          />
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="my-2">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
