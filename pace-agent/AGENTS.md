@@ -49,3 +49,20 @@ Important: When modifying core agent behavior such as instructions, tool descrip
 ## LiveKit CLI
 
 Beyond documentation access, the LiveKit CLI (`lk`) supports other tasks such as managing SIP trunks for telephony-based agents. Run `lk --help` to explore available commands.
+
+## Cross-Project Operating Rules
+
+These apply to every project under `~/Desktop/Developer`. Canonical source:
+`~/Desktop/Developer/CLAUDE.md`. (Investigation-before-implementation is already
+covered above — the TDD / "never just guess" guidance is the same intent.)
+
+- **Full test suite is the commit gate.** The full `uv run pytest` suite must be
+  green before every commit — not optional. Writing tests TDD-first (above) is
+  the practice; a green *full* suite is the gate. Targeted checks are *in addition
+  to*, never *instead of*, the full suite.
+- **Explicit file lists for git commits.** Stage named files; `git add -A` is the
+  exception, not the default — it sweeps untracked or in-flight work into the
+  wrong commit.
+- **Platform fixes ship separately from feature work.** Bug and platform fixes go
+  in their own commits. Bundling is allowed only under genuine production
+  pressure, and must be named explicitly in the commit message.
