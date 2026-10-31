@@ -1,0 +1,9 @@
+{
+  "name": "pace-bot-project",
+  "description": "Web avatar + chatbot answering PACE program and entrepreneurship questions, with voice via LiveKit.",
+  "category": "live",
+  "url": "https://pace-bot-front-production.up.railway.app/",
+  "start": null,
+  "stack": "TypeScript/Fastify + Postgres/pgvector backend, React/Vite + LiveKit frontend, Python LiveKit voice agent",
+  "pitch": "Web avatar + chatbot answering PACE and entrepreneurship questions"
+}
